@@ -52,7 +52,7 @@ const Timer = () => {
       clearInterval(interval);
       //   console.log("stopped timer");
     };
-  }, [active]);
+  }, [active, seconds]);
 
   return (
     <Container>
@@ -60,11 +60,20 @@ const Timer = () => {
       <Input
         placeholder="Enter time in seconds"
         type="number"
-        onChange={(e) => setSeconds(e.target.value)}
+        onChange={(e) => {
+          setActive(false);
+          setSeconds(e.target.value);
+        }}
+        value={seconds}
       />
       <Button
         label={!active ? "Start" : "Stop"}
-        onClick={() => setActive(!active)}
+        onClick={() => {
+          setActive(!active);
+          if (active) {
+            setSeconds(0);
+          }
+        }}
       />
       {timer && active && <h1>{timer} seconds</h1>}
 
