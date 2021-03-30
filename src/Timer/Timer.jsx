@@ -75,7 +75,7 @@ const Timer = () => {
           }
         }}
       />
-      {timer && active && <h1>{timer} seconds</h1>}
+      {active && timer > 0 && <h1>{timer} seconds</h1>}
 
       {timer === 0 && <h1>Time's up!</h1>}
     </Container>
